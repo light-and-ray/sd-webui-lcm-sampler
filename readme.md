@@ -10,3 +10,4 @@ Use this sampler to not break generation, using lcm-loras:
 - https://huggingface.co/latent-consistency/lcm-lora-ssd-1b
 - https://huggingface.co/latent-consistency/lcm-lora-sdxl
 
+Especially sdxl
