@@ -11,3 +11,11 @@ Use this sampler to not break generation, using lcm-loras:
 - https://huggingface.co/latent-consistency/lcm-lora-sdxl
 
 Especially sdxl
+
+
+There is no diffirence in taken time between lcm and euler a samplers
+
+![](images/img3.jpg)
+
+Plot for steps 1-20:
+![](images/img2.jpg)
