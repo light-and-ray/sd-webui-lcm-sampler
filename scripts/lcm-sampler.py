@@ -3,6 +3,9 @@ import tqdm
 import k_diffusion.sampling
 from modules import sd_samplers_common, sd_samplers_kdiffusion, sd_samplers
 
+NAME = 'LCM Test'
+ALIAS = 'lcm'
+
 @torch.no_grad()
 def sample_lcm(model, x, sigmas, extra_args=None, callback=None, disable=None, noise_sampler=None):
     extra_args = {} if extra_args is None else extra_args
@@ -18,13 +21,13 @@ def sample_lcm(model, x, sigmas, extra_args=None, callback=None, disable=None, n
             x += sigmas[i + 1] * noise_sampler(sigmas[i], sigmas[i + 1])
     return x
 
-lcm_samplers = [('LCM Test', sample_lcm, ['lcm'], {})]
 
-samplers_data_lcm_samplers = [
-    sd_samplers_common.SamplerData(label, lambda model, funcname=funcname: sd_samplers_kdiffusion.KDiffusionSampler(funcname, model), aliases, options)
-    for label, funcname, aliases, options in lcm_samplers
-    if callable(funcname) or hasattr(k_diffusion.sampling, funcname)
-]
-
-sd_samplers.all_samplers += samplers_data_lcm_samplers
-sd_samplers.all_samplers_map = {x.name: x for x in sd_samplers.all_samplers}
+if not NAME in [x.name for x in sd_samplers.all_samplers]:
+    lcm_samplers = [(NAME, sample_lcm, [ALIAS], {})]
+    samplers_data_lcm_samplers = [
+        sd_samplers_common.SamplerData(label, lambda model, funcname=funcname: sd_samplers_kdiffusion.KDiffusionSampler(funcname, model), aliases, options)
+        for label, funcname, aliases, options in lcm_samplers
+        if callable(funcname) or hasattr(k_diffusion.sampling, funcname)
+    ]
+    sd_samplers.all_samplers += samplers_data_lcm_samplers
+    sd_samplers.all_samplers_map = {x.name: x for x in sd_samplers.all_samplers}
