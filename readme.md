@@ -10,7 +10,7 @@ Use this sampler to not break generation, using lcm-loras:
 - https://huggingface.co/latent-consistency/lcm-lora-ssd-1b
 - https://huggingface.co/latent-consistency/lcm-lora-sdxl
 
-Especially sdxl
+Or you can use it with [sd_turbo](models/Stable-diffusion/sd_turbo.safetensors). It is turbo version of sd 2.1 512. Useful with amazing [StableSR](https://github.com/pkuliyi2015/sd-webui-stablesr) uspcaling
 
 
 There is no diffirence in taken time between lcm and euler a samplers
